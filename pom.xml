@@ -2,13 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<groupId>com.github.kamaladafrica</groupId>
-	<artifactId>correlation-scope</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<modelVersion>4.0.0</modelVersion>
 
 	<name>Correlation CDI scope</name>
 
-	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.kamaladafrica.cdi</groupId>
+	<artifactId>correlation-scope</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+ 	<url>https://github.com/kamaladafrica/correlation-scope</url>	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,6 +27,45 @@
 
 		<skipTests>true</skipTests>
 	</properties>
+
+	<issueManagement>
+	    <system>GitHub Issues</system>
+	    <url>https://github.com/kamaladafrica/correlation-scope/issues</url>
+	</issueManagement>
+	<inceptionYear>2015</inceptionYear>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
+	<scm>
+		<connection>scm:git:https://github.com/kamaladafrica/correlation-scope.git</connection>
+		<developerConnection>scm:git:https://github.com/kamaladafrica/correlation-scope.git</developerConnection>
+		<url>https://github.com/kamaladafrica/correlation-scope</url>
+    <tag>HEAD</tag>
+  </scm>
+	<developers>
+		<developer>
+			<id>kamaladafrica</id>
+			<name>Alessio D'Innocenti</name>
+			<email>alessio.dinnocenti@google.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<distributionManagement>
+	    <repository>
+	       <id>bintray</id>
+	       <url>https://api.bintray.com/maven/kamaladafrica/maven/correlation-scope/;publish=1</url>
+	    </repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
@@ -47,33 +90,33 @@
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-source-plugin</artifactId>
 		        <version>2.4</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.3</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
+	        <plugin>
+	            <artifactId>maven-scm-plugin</artifactId>
+	            <version>1.8.1</version>
+	            <configuration>
+	                <tag>v${project.version}</tag>
+	            </configuration>
+	        </plugin>
+			<plugin>
+	            <groupId>external.atlassian.jgitflow</groupId>
+	            <artifactId>jgitflow-maven-plugin</artifactId>
+	            <version>1.0-m5.1</version>
+	            <configuration>
+					<flowInitContext>
+						<versionTagPrefix>v</versionTagPrefix>
+					</flowInitContext>
+    				<autoVersionSubmodules>true</autoVersionSubmodules>
+	            </configuration>
+	        </plugin>
 		</plugins>
 	</build>
-
-
 
 	<dependencies>
 
@@ -143,8 +186,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 </project>
